@@ -1,0 +1,14 @@
+<xpert-config>
+
+    <auditing>
+        <auditing-impl>br.ma.gov.imperatriz.contribuinte.contigenterps.modelo.audit.Auditing</auditing-impl>
+        <metadata-impl>br.ma.gov.imperatriz.contribuinte.contigenterps.modelo.audit.Metadata</metadata-impl>
+        <query-auditing-impl>br.ma.gov.imperatriz.contribuinte.contigenterps.modelo.audit.QueryAuditing</query-auditing-impl>
+        <auditing-listener>br.ma.gov.imperatriz.contribuinte.contigenterps.application.AuditingListenerImpl</auditing-listener>
+        <query-audit-persister-factory>br.ma.gov.imperatriz.contribuinte.contigenterps.application.QueryAuditPersisterFactoryImpl</query-audit-persister-factory>
+    </auditing>
+    
+    <entity-manager-factory>br.ma.gov.imperatriz.contribuinte.contigenterps.application.EntityManagerFactoryImpl</entity-manager-factory>
+    <resource-bundle>bundles.messages</resource-bundle>
+
+</xpert-config>

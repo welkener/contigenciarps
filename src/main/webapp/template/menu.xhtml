@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xml:lang="en"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:x="http://xpert.com/faces"
+                >
+
+
+    <h:form id="formMenu">                
+        <div class="hidden-xs">
+            <p:menubar model="#{sessaoUsuarioMB.menuModel}" >
+                <f:facet name="options">
+                    <h:panelGroup>
+                        <p:autoComplete minQueryLength="3" id="autoCompleteMenu" placeholder="Acesso Rápido"
+                                        completeMethod="#{sessaoUsuarioMB.pesquisarPermissao}"
+                                        converter="entityConverter" styleClass="acesso-rapido"
+                                        itemValue="#{permissao}" scrollHeight="300"
+                                        var="permissao" itemLabel="#{permissao.urlMenuVerificado}">
+                            <p:ajax event="query" global="false" />
+                            <p:ajax event="itemSelect" global="false" onstart="navegarMenuBar()" />
+                            <p:column>
+                                <h:outputText  value="#{permissao.caminhoPermissao}" escape="false"/>
+                            </p:column>
+                        </p:autoComplete>
+                    </h:panelGroup>
+                </f:facet>
+            </p:menubar>
+        </div>
+        <div class="hidden-lg hidden-sm hidden-md">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand visible-xs" href="#{request.contextPath}/view/home.jsf">Home</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <p:panelMenu  style="width: 100%" model="#{sessaoUsuarioMB.menuModel}"/>                    
+                </div>
+            </nav>
+        </div>
+    </h:form>
+
+    <script>
+        function navegarMenuBar() {
+            var url = $('.acesso-rapido input').val();
+            window.location.href = "#{request.contextPath}" + url;
+        }
+    </script>
+
+</ui:composition>
